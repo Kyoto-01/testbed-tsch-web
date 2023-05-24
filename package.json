@@ -2,15 +2,19 @@
   "name": "testbed-tsch-web",
   "version": "1.0.0",
   "description": "Aplicação para servir interfaces de usuário e relatórios de análise de dados do testbed de forma dinâmica.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node app/index.js",
+    "dev": "nodemon app/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.3.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
