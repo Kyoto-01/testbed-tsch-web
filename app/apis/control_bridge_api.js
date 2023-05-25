@@ -27,7 +27,7 @@ async function create_control_msg(msg) {
         success = false;
     }
 
-    return [success, response.status];
+    return response.status;
 }
 
 
