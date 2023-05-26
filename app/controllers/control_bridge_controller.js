@@ -1,4 +1,4 @@
-import cbapi from "../apis/control_bridge_api.js"
+import cbapi from "../apis/control_bridge_api.js";
 
 
 async function create_control_msg(req, res) {
@@ -16,16 +16,17 @@ async function create_control_msg(req, res) {
     };
 
     try {
-        const apiReq = await cbapi.create_control_msg(msg);
+        const response = await cbapi.create_control_msg(msg);
 
-        if (apiReq) {
+        if (response.status == 202) {
             res.redirect("/experiments");
         } else {
             throw new Error;
         }
+
     } catch {
         res.render(
-            "pages/message", 
+            "pages/message",
             { "msg": "Failed to send control message." }
         );
     }
@@ -34,4 +35,4 @@ async function create_control_msg(req, res) {
 
 export default {
     create_control_msg
-}
+};

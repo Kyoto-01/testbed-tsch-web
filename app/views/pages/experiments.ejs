@@ -4,7 +4,7 @@
 
 <head lang="en-US">
 
-    <%- include("../partials/head", {page_name: "Experiments"}) %>
+    <%- include("../partials/head", {"page_name": "Experiments" }) %>
 
 </head>
 
@@ -12,11 +12,27 @@
 
     <header id="header">
 
-	    <%- include("../partials/header") %>
-        
+        <%- include("../partials/header") %>
+
     </header>
 
-    <main id="main">
+    <main id="main" class="container mt-5">
+
+        <h1>Experiment List</h1>
+
+        <div class="mt-5">
+            <ul>
+
+                <% experiments.forEach((exp)=> { %>
+                    <li>
+                        <a href="/experiment?experiment=<%= exp %>" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                            <%= exp %>
+                        </a>
+                    </li>
+                <% }); %>
+
+            </ul>
+        </div>
 
     </main>
 

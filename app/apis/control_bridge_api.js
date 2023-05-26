@@ -1,4 +1,4 @@
-import fetch from "node-fetch"
+import fetch from "node-fetch";
 
 
 const CONTROL_BRIDGE_API_ADDR = "192.168.1.100";
@@ -21,13 +21,7 @@ async function create_control_msg(msg) {
 
     const response = await fetch(url, request);
 
-    let success = true;
-
-    if (response.status != 202) {
-        success = false;
-    }
-
-    return response.status;
+    return response;
 }
 
 

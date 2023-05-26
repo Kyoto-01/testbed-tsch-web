@@ -1,29 +1,24 @@
-import express from "express"
+import express from "express";
 
-import cbController from "../controllers/control_bridge_controller.js"
+import cbController from "../controllers/control_bridge_controller.js";
+import analyzeController from "../controllers/analyze_controller.js";
 
 
 const router = express.Router();
 
-
-// Pages
+// static pages
 
 router.get("/", (req, res) => {
     res.render("pages/home");
-}
-)
+})
 
 router.get("/setup", (req, res) => {
-        res.render("pages/setup");
-    }
-)
+    res.render("pages/setup");
+})
 
-router.get("/experiments", (req, res) => {
-        res.render("pages/experiments");
-    }
-)
+// dynamic pages (that interact with APIs)
 
-// Gateway
+router.get("/experiments", analyzeController.get_experiments)
 
 router.post("/control", cbController.create_control_msg);
 
