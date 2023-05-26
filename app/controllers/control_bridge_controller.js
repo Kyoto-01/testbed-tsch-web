@@ -24,7 +24,10 @@ async function create_control_msg(req, res) {
             throw new Error;
         }
     } catch {
-        res.render("fail", { "msg": "Failed to send control message." });
+        res.render(
+            "pages/message", 
+            { "msg": "Failed to send control message." }
+        );
     }
 }
 
