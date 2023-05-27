@@ -18,7 +18,11 @@ router.get("/setup", (req, res) => {
 
 // dynamic pages (that interact with APIs)
 
-router.get("/experiments", analyzeController.get_experiments)
+router.get("/experiments", analyzeController.get_experiments);
+
+router.get("/experiment", analyzeController.get_report_summary);
+
+// form submissions
 
 router.post("/control", cbController.create_control_msg);
 

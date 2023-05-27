@@ -9,11 +9,19 @@ const ANALYZE_API_URL = `http://${ANALYZE_API_ADDR}:${ANALYZE_API_PORT}`;
 
 
 async function get_experiments() {
+    const response = await get_report_summary("testbed-main")
+
+    response.body = response.body.testbed.testbed;
+
+    return response;
+}
+
+async function get_report_summary(experiment) {
     const url = `${ANALYZE_API_URL}/api/report/general`;
 
     const body = {
-        "testbed_name": "testbed-main",
-        "topics": ["testbed/testbed/"]
+        "testbed_name": experiment,
+        "topics": ["testbed/"]
     };
 
     const request = {
@@ -43,5 +51,6 @@ async function get_experiments() {
 
 
 export default {
-    get_experiments
+    get_experiments,
+    get_report_summary
 };

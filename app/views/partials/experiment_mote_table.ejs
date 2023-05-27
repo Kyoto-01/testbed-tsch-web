@@ -1,0 +1,41 @@
+<table class="table table-bordered table-hover">
+
+    <thead>
+
+        <tr>
+
+            <th scope="col">#</th>
+            <th scope="col">Address</th>
+            <th scope="col">dashboard</th>
+            <th scope="col">Packets</th>
+            <th scope="col">Acked packets</th>
+            <th scope="col">Throughputs</th>
+            <th scope="col">PDR</th>
+            <th scope="col">PER</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody class="table-group-divider">
+
+        <% motes.forEach((mote, index)=> { %>
+
+            <tr>
+
+                <th scope="row"><%= index + 1 %></th>
+                <th class="fw-normal"><%= mote %></th>
+                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+    
+            </tr>
+
+        <% }); %>
+
+    </tbody>
+
+</table>
