@@ -28,7 +28,8 @@
 
                 <div class="mb-3 col-md-12">
                     <label for="experiment-name" class="form-label">Experiment name *</label>
-                    <input id="experiment-name" class="form-control" type="text" name="experiment_name" required>
+                    <input id="experiment-name" class="form-control" type="text" name="experiment_name" pattern="[a-zA-Z0-9_-]+" required>
+                    <span class="form-text">Only letters, numbers and symbols (_ and -)</span>
                 </div>
 
                 <div class="mb-3 col-md-6">
@@ -58,7 +59,8 @@
 
                 <div class="mb-3 col-md-6">
                     <label for="hopseq" class="form-label">Hop sequence</label>
-                    <input id="hopseq" class="form-control" type="text" name="hopseq" placeholder="e.g. 15,20,21,16">
+                    <input id="hopseq" class="form-control" type="text" name="hopseq" pattern="^[0-9]+(,[0-9]+)*$" placeholder="e.g. 15,20,21,16">
+                    <span class="form-text">Comma-separated integers only (e.g. 15,20,21,16)</span>
                 </div>
 
                 <button type="submit" class="mt-4 mb-3 col-md-3 btn btn-success">Setup</button>
