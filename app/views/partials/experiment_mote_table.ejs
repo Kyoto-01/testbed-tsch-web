@@ -23,15 +23,38 @@
 
             <tr>
 
-                <th scope="row"><%= index + 1 %></th>
-                <th class="fw-normal"><%= mote %></th>
-                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
-                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
-                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
-                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
-                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
-                <th class="fw-normal"><a href="#" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
-    
+                <th scope="row">
+                    <%= index + 1 %>
+                </th>
+
+                <th class="fw-normal">
+                    <%= mote %>
+                </th>
+
+                <th class="fw-normal"><a
+                        href="/experiment/dashboard?experiment=<%= experiment_name %>&mote_type=<%= mote_type %>&mote_addr=<%= mote %>"
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+
+                <th class="fw-normal"><a
+                        href="/experiment/raw?data_type=packets&experiment=<%= experiment_name %>&mote_type=<%= mote_type %>&mote_addr=<%= mote %>"
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+
+                <th class="fw-normal"><a
+                        href="/experiment/raw?data_type=acked&experiment=<%= experiment_name %>&mote_type=<%= mote_type %>&mote_addr=<%= mote %>"
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+
+                <th class="fw-normal"><a
+                        href="/experiment/raw?data_type=throughputs&experiment=<%= experiment_name %>&mote_type=<%= mote_type %>&mote_addr=<%= mote %>"
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+
+                <th class="fw-normal"><a
+                        href="/experiment/raw?data_type=pdr&experiment=<%= experiment_name %>&mote_type=<%= mote_type %>&mote_addr=<%= mote %>"
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+
+                <th class="fw-normal"><a
+                        href="/experiment/raw?data_type=per&experiment=<%= experiment_name %>&mote_type=<%= mote_type %>&mote_addr=<%= mote %>"
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">view</a></th>
+
             </tr>
 
         <% }); %>

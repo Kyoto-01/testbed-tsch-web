@@ -33,7 +33,8 @@
         <div class="mt-5">
 
             <ul class="list-unstyled">
-                <li><strong>Experiment name</strong>: <%= experiment_name %></li>
+                <li><strong>Experiment name</strong>: <%= experiment_name %>
+                </li>
             </ul>
 
         </div>
@@ -43,8 +44,9 @@
             <div>
 
                 <h3 class="mb-3">Server Motes</h3>
-                
-                <%- include("../partials/experiment_mote_table", { "motes": server_motes }); %>
+
+                <%- include("../partials/experiment_mote_table" , { "experiment_name" : experiment_name, "mote_type"
+                    : "server" , "motes" : server_motes }); %>
 
             </div>
 
@@ -52,7 +54,8 @@
 
                 <h3 class="mb-3">Client Motes</h3>
 
-                <%- include("../partials/experiment_mote_table", { "motes": client_motes }); %>
+                <%- include("../partials/experiment_mote_table" , { "experiment_name" : experiment_name, "mote_type"
+                    : "client" , "motes" : client_motes }); %>
 
             </div>
 
