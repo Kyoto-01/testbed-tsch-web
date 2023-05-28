@@ -42,10 +42,33 @@
 
         <div class="mt-5">
 
-            <ul class="list-unstyled">
-                <li><strong>Experiment name</strong>: <%= experiment_name %>
-                </li>
-            </ul>
+            <div>
+
+                <h3>General</h3>
+
+                <hr>
+
+                <ul class="list-unstyled">
+
+                    <li>
+                        <strong>Name</strong>: <%= experiment_name %>
+                    </li>
+
+                    <li>
+                        <strong>Status</strong>: <%= experiment_status %>
+                    </li>
+
+                    <li>
+                        <strong>Start at</strong>: <%= experiment_start %>
+                    </li>
+
+                    <li>
+                        <strong>Stop at</strong>: <%= experiment_stop %>
+                    </li>
+
+                </ul>
+
+            </div>
 
         </div>
 
@@ -55,6 +78,8 @@
 
                 <h3 class="mb-3">Server Motes</h3>
 
+                <hr>
+
                 <%- include("../partials/experiment_mote_table" , { "experiment_name" : experiment_name, "mote_type"
                     : "server" , "motes" : server_motes }); %>
 
@@ -63,6 +88,8 @@
             <div class="mt-5">
 
                 <h3 class="mb-3">Client Motes</h3>
+
+                <hr>
 
                 <%- include("../partials/experiment_mote_table" , { "experiment_name" : experiment_name, "mote_type"
                     : "client" , "motes" : client_motes }); %>

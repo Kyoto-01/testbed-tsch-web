@@ -21,18 +21,60 @@
         <h1>Experiment List</h1>
 
         <div class="mt-5">
-            <ul>
 
-                <% experiments.forEach((exp)=> { %>
-                    <li>
-                        <a href="/experiment?experiment=<%= exp %>"
-                            class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
-                            <%= exp %>
-                        </a>
-                    </li>
-                <% }); %>
+            <table class="table table-bordered table-hover">
 
-            </ul>
+                <thead>
+
+                    <tr>
+
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Start at</th>
+                        <th scope="col">Stop at</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody class="table-group-divider">
+
+                    <% experiments.forEach((exp, index) => { %>
+
+                        <tr>
+
+                            <th scope="row">
+                                <%= index + 1 %>
+                            </th>
+
+                            <th class="fw-normal">
+                                <a href="/experiment?experiment=<%= exp.name %>"
+                                    class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                                    <%= exp.name %>
+                                </a>
+                            </th>
+
+                            <th class="fw-normal <%= exp.status == "Running" ? "text-success" : "text-danger" %>">
+                                <%= exp.status %>
+                            </th>
+
+                            <th class="fw-normal">
+                                <%= exp.start %>
+                            </th>
+
+                            <th class="fw-normal">
+                                <%= exp.stop %>
+                            </th>
+
+                        </tr>
+
+                    <% }); %>
+
+                </tbody>
+
+            </table>
+
         </div>
 
     </main>
