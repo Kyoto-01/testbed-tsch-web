@@ -18,9 +18,14 @@
 
     <main id="main">
 
-        <div class="w-25 mt-3 text-center">
+        <div class="p-5 mt-3">
 
             <span><%= msg %></span>
+
+            <% if (note) { %>
+                <br>
+                <span><%= note %></span>
+            <% } %>
             
         </div>
 

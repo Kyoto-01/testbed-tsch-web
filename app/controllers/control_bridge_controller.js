@@ -19,7 +19,7 @@ async function create_control_msg(req, res) {
         const response = await cbapi.create_control_msg(msg);
 
         if (response.status == 202) {
-            res.redirect("/experiments");
+            res.redirect(`/experiment?experiment=${msg["testbed"]}`);
         } else {
             throw new Error;
         }

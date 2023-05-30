@@ -13,16 +13,16 @@ async function get_experiments(req, res) {
             for (let exp of experimentsName.body) {
 
                 let expData = await analyzeApi.get_report_summary(exp);
-    
+
                 if (expData.status == 200) {
-                    
+
                     expData = {
                         "name": expData.body.testbed.name,
                         "status": expData.body.testbed.status == "start" ? "Running" : "Stopped",
                         "start": new Date(expData.body.testbed.start * 1000),
                         "stop": expData.body.testbed.stop ? new Date(expData.body.testbed.stop * 1000) : "-"
                     };
-    
+
                     experimentsData.push(expData);
                 }
             }
@@ -74,7 +74,11 @@ async function get_report_summary(req, res) {
     } catch {
         res.render(
             "pages/message",
-            { "msg": "Failed to get experiment information." }
+            { 
+                "msg": "Failed to get experiment information.",
+                "note": "(If you just created an experiment, wait a few seconds and restart the screen." + 
+                    " Maybe your experiment is not built yet.)" 
+            }
         );
     }
 }
