@@ -20,7 +20,9 @@ router.get("/setup", (req, res) => {
 
 router.get("/experiments", analyzeController.get_experiments);
 
-router.get("/experiment", analyzeController.get_report_summary);
+router.get("/experiment", analyzeController.get_experiment_summary);
+
+router.get("/experiment/raw", analyzeController.get_experiment_raw);
 
 // form submissions
 

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+
+<head lang="en-US">
+
+    <%- include("../partials/head",  {"page_name": "Experiment raw"}); %>
+
+</head>
+
+<body>
+
+    <header id="header">
+
+	    <%- include("../partials/header"); %>
+        
+    </header>
+
+    <main id="main" class="container mt-5">
+
+        <div>
+            
+            <h1>Experiment mote raw data</h1>
+
+            <ul class="list-unstyled mt-5">
+
+                <li><strong>Experiment</strong>: <%= experiment %></li>
+                <li><strong>Mote type</strong>: <%= mote_type %></li>
+                <li><strong>Mote address</strong>: <%= general.addr %></li>
+
+            </ul>
+
+        </div>
+
+        <div class="mt-5">
+
+            <% general.peer.forEach((peer, index) => { %>
+                
+                <div class="mb-5">
+
+                    <div>
+                        
+                        <h3>Link <%= index + 1 %>: <%= general.addr %> - <%= peer %></h3>
+
+                        <hr>
+
+                    </div>
+
+                    <div>
+
+                        <table class="table table-bordered table-hover">
+                            
+                            <thead>
+
+                                <tr>
+
+                                    <th scope="col">Time</th>
+
+                                    <% for (let col in raw) { %>
+
+                                        <th scope="col"><%= raw[col].title %></th>
+
+                                    <% } %>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody class="table-group-divider">
+                                
+                                <% raw.key.data[peer].forEach((row, index) => { %>
+
+                                    <tr>
+
+                                        <th scope="row" class="fw-normal">
+
+                                            <%= new Date(row.time) %>
+
+                                        </th>
+
+                                        <% for (let col in raw) { %>
+
+                                            <th class="fw-normal">
+
+                                                <%= raw[col].data[peer][index].value %>
+                                            
+                                            </th>
+
+                                        <% } %>
+
+                                    </tr>
+
+                                <% }); %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            <% }); %>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/scripts"); %>
+
+</body>
+
+</html>
