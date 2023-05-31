@@ -44,54 +44,91 @@
 
             <div>
 
-                <h3>General</h3>
+                <div>
 
-                <hr>
+                    <h3>General</h3>
 
-                <ul class="list-unstyled">
+                    <hr>
 
-                    <li>
-                        <strong>Name</strong>: <%= experiment_name %>
-                    </li>
+                    <ul class="list-unstyled">
 
-                    <li>
-                        <strong>Status</strong>: <%= experiment_status %>
-                    </li>
+                        <li>
+                            <strong>Name</strong>: <%= experiment_name %>
+                        </li>
 
-                    <li>
-                        <strong>Start at</strong>: <%= experiment_start %>
-                    </li>
+                        <li>
+                            <strong>Status</strong>: <%= experiment_status %>
+                        </li>
 
-                    <li>
-                        <strong>Stop at</strong>: <%= experiment_stop %>
-                    </li>
+                        <li>
+                            <strong>Start at</strong>: <%= experiment_start %>
+                        </li>
 
-                    <li>
-                        <strong>Dashboard</strong>: <a href="/experiment/dashboard?experiment=<%= experiment_name %>&mote_type=general&mote_addr="
-                            class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
-                    </li>
+                        <li>
+                            <strong>Stop at</strong>: <%= experiment_stop %>
+                        </li>
+                    
+                    </ul>
 
-                    <li>
-                        <strong>Delays</strong>: <a href="/experiment/raw?data_type=delays&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
-                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
-                    </li>
+                </div>
 
-                    <li>
-                        <strong>Throughputs</strong>: <a href="/experiment/raw?data_type=throughputs&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
-                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
-                    </li>
+                <div class="mt-5">
+                    <h3>Network</h3>
 
-                    <li>
-                        <strong>PDR</strong>: <a href="/experiment/raw?data_type=pdr&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
-                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
-                    </li>
+                    <hr>
 
-                    <li>
-                        <strong>PER</strong>: <a href="/experiment/raw?data_type=per&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
-                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
-                    </li>
+                    <table class="table table-bordered table-hover">
 
-                </ul>
+                        <thead>
+
+                            <tr>
+
+                                <th scope="col">Dashboard</th>
+                                <th scope="col">Delays</th>
+                                <th scope="col">Throughputs</th>
+                                <th scope="col">PDR</th>
+                                <th scope="col">PER</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody class="table-group-divider">
+
+                            <tr>
+
+                                <th class="fw-normal">
+                                    <a href="/experiment/dashboard?experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                                </th>
+
+                                <th class="fw-normal">
+                                    <a href="/experiment/raw?data_type=delays&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                                </th>
+
+                                <th class="fw-normal">
+                                    <a href="/experiment/raw?data_type=throughputs&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                                </th>
+
+                                <th class="fw-normal">
+                                    <a href="/experiment/raw?data_type=pdr&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                                </th>
+
+                                <th class="fw-normal">
+                                    <a href="/experiment/raw?data_type=per&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                                </th>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
