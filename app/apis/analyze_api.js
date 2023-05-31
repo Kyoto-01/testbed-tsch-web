@@ -147,6 +147,18 @@ async function get_experiment_server_raw_delays(experiment, mote) {
     return response;
 }
 
+async function get_experiment_general_raw_delays(experiment) {
+
+    const topics = [
+        "general/",
+        "raw/delay/"
+    ];
+    
+    const response = await get_experiment_general_data(experiment, topics);
+
+    return response;
+}
+
 async function get_experiment_client_raw_throughputs(experiment, mote) {
 
     const topics = [
@@ -167,6 +179,18 @@ async function get_experiment_server_raw_throughputs(experiment, mote) {
     ];
 
     const response = await get_experiment_server_data(experiment, mote, topics);
+
+    return response;
+}
+
+async function get_experiment_general_raw_throughputs(experiment, mote) {
+
+    const topics = [
+        "general/",
+        "raw/throughput/"
+    ];
+
+    const response = await get_experiment_general_data(experiment, topics);
 
     return response;
 }
@@ -195,6 +219,18 @@ async function get_experiment_server_raw_pdr(experiment, mote) {
     return response;
 }
 
+async function get_experiment_general_raw_pdr(experiment, mote) {
+
+    const topics = [
+        "general/",
+        "raw/pdr/"
+    ];
+
+    const response = await get_experiment_general_data(experiment, topics);
+
+    return response;
+}
+
 async function get_experiment_client_raw_per(experiment, mote) {
 
     const topics = [
@@ -219,6 +255,18 @@ async function get_experiment_server_raw_per(experiment, mote) {
     return response;
 }
 
+async function get_experiment_general_raw_per(experiment, mote) {
+
+    const topics = [
+        "general/",
+        "raw/per/"
+    ];
+
+    const response = await get_experiment_general_data(experiment, topics);
+
+    return response;
+}
+
 
 export default {
     get_experiments,
@@ -227,10 +275,14 @@ export default {
     get_experiment_server_raw_packets,
     get_experiment_client_raw_delays,
     get_experiment_server_raw_delays,
+    get_experiment_general_raw_delays,
     get_experiment_client_raw_throughputs,
     get_experiment_server_raw_throughputs,
+    get_experiment_general_raw_throughputs,
     get_experiment_client_raw_pdr,
     get_experiment_server_raw_pdr,
+    get_experiment_general_raw_pdr,
     get_experiment_client_raw_per,
-    get_experiment_server_raw_per
+    get_experiment_server_raw_per,
+    get_experiment_general_raw_per
 };

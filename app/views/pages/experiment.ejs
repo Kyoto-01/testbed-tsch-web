@@ -66,6 +66,31 @@
                         <strong>Stop at</strong>: <%= experiment_stop %>
                     </li>
 
+                    <li>
+                        <strong>Dashboard</strong>: <a href="/experiment/dashboard?experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                            class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                    </li>
+
+                    <li>
+                        <strong>Delays</strong>: <a href="/experiment/raw?data_type=delays&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                    </li>
+
+                    <li>
+                        <strong>Throughputs</strong>: <a href="/experiment/raw?data_type=throughputs&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                    </li>
+
+                    <li>
+                        <strong>PDR</strong>: <a href="/experiment/raw?data_type=pdr&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                    </li>
+
+                    <li>
+                        <strong>PER</strong>: <a href="/experiment/raw?data_type=per&experiment=<%= experiment_name %>&mote_type=general&mote_addr="
+                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View</a>
+                    </li>
+
                 </ul>
 
             </div>

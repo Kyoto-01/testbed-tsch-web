@@ -103,29 +103,29 @@ async function get_experiment_raw_packets_context(moteType, mote, experiment) {
         );
     }
 
-    const acked = {};
-
-    for (let peer in response.body.raw.packet) {
-
-        acked[peer] = [];
-
-        response.body.raw.packet[peer].forEach((pkt) => {
-
-            if (
-                (peer in response.body.raw.acked) && 
-                (pkt.value in response.body.raw.acked[peer])
-            ) {
-
-                acked[peer].push({ "time": pkt.time, "value": "Yes" });
-
-            } else {
-
-                acked[peer].push({ "time": pkt.time, "value": "No" });
-            }    
-        });
-    }
-
     if (response.status == 200) {
+
+        const acked = {};
+
+        for (let peer in response.body.raw.packet) {
+    
+            acked[peer] = [];
+    
+            response.body.raw.packet[peer].forEach((pkt) => {
+    
+                if (
+                    (peer in response.body.raw.acked) && 
+                    (pkt.value in response.body.raw.acked[peer])
+                ) {
+    
+                    acked[peer].push({ "time": pkt.time, "value": "Yes" });
+    
+                } else {
+    
+                    acked[peer].push({ "time": pkt.time, "value": "No" });
+                }    
+            });
+        }
 
         context = {
             "mote_type": moteType,
@@ -166,28 +166,32 @@ async function get_experiment_raw_delays_context(moteType, mote, experiment) {
         response = await analyzeApi.get_experiment_server_raw_delays(
             experiment, mote
         );
-    }
-
-    const delays = {};
-
-    for (let peer in response.body.raw.delay) {
-
-        delays[peer] = [];
-
-        response.body.raw.delay[peer].forEach((delay) => {
-
-            if (delay.value < 0) {
-
-                delays[peer].push({ "time": delay.time, "value": "-" });
-
-            } else {
-
-                delays[peer].push(delay);
-            }
-        });
+    
+    } else if (moteType == "general") {
+       
+        response = await analyzeApi.get_experiment_general_raw_delays(experiment);
     }
 
     if (response.status == 200) {
+
+        const delays = {};
+
+        for (let peer in response.body.raw.delay) {
+    
+            delays[peer] = [];
+    
+            response.body.raw.delay[peer].forEach((delay) => {
+    
+                if (delay.value < 0) {
+    
+                    delays[peer].push({ "time": delay.time, "value": "-" });
+    
+                } else {
+    
+                    delays[peer].push(delay);
+                }
+            });
+        }
 
         context = {
             "mote_type": moteType,
@@ -223,6 +227,10 @@ async function get_experiment_raw_throughputs_context(moteType, mote, experiment
         response = await analyzeApi.get_experiment_server_raw_throughputs(
             experiment, mote
         );
+        
+    } else if (moteType == "general") {
+
+        response = await analyzeApi.get_experiment_general_raw_throughputs(experiment);
     }
 
     if (response.status == 200) {
@@ -261,6 +269,10 @@ async function get_experiment_raw_pdr_context(moteType, mote, experiment) {
         response = await analyzeApi.get_experiment_server_raw_pdr(
             experiment, mote
         );
+
+    } else if (moteType == "general") {
+
+        response = await analyzeApi.get_experiment_general_raw_pdr(experiment);
     }
 
     if (response.status == 200) {
@@ -299,6 +311,10 @@ async function get_experiment_raw_per_context(moteType, mote, experiment) {
         response = await analyzeApi.get_experiment_server_raw_per(
             experiment, mote
         );
+
+    } else if (moteType == "general") {
+
+        response = await analyzeApi.get_experiment_general_raw_per(experiment);
     }
 
     if (response.status == 200) {
@@ -321,6 +337,7 @@ async function get_experiment_raw_per_context(moteType, mote, experiment) {
 }
 
 async function get_experiment_raw(req, res) {
+
     try {
 
         const dataType = req.query.data_type;
@@ -360,6 +377,10 @@ async function get_experiment_raw(req, res) {
                     moteType, moteAddr, experimentName
                 );
                 break;
+        }
+        
+        if (moteType == "general") {
+            context.general.peer.push("general");
         }
 
         res.render("pages/experiment_raw", context);

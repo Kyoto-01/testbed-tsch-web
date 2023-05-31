@@ -20,13 +20,26 @@
 
         <div>
             
-            <h1>Experiment mote raw data</h1>
+            <% if (mote_type != "general") { %>
+                
+                <h1>Experiment mote raw data</h1>
+
+            <% } else { %>
+                
+                <h1>Experiment general raw data</h1>
+    
+            <% } %>
 
             <ul class="list-unstyled mt-5">
 
                 <li><strong>Experiment</strong>: <%= experiment %></li>
-                <li><strong>Mote type</strong>: <%= mote_type %></li>
-                <li><strong>Mote address</strong>: <%= general.addr %></li>
+
+                <% if (mote_type != "general") { %>
+
+                    <li><strong>Mote type</strong>: <%= mote_type %></li>
+                    <li><strong>Mote address</strong>: <%= general.addr %></li>
+
+                <% } %>
 
             </ul>
 
@@ -38,13 +51,17 @@
                 
                 <div class="mb-5">
 
-                    <div>
-                        
-                        <h3>Link <%= index + 1 %>: <%= general.addr %> - <%= peer %></h3>
+                    <% if (mote_type != "general") { %>
 
-                        <hr>
+                        <div>
+                            
+                            <h3>Link <%= index + 1 %>: <%= general.addr %> - <%= peer %></h3>
 
-                    </div>
+                            <hr>
+
+                        </div>
+
+                    <% } %>
 
                     <div>
 
