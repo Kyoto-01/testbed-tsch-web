@@ -26,7 +26,7 @@
 
                 <input type="hidden" name="action" value="start">
 
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="experiment-name" class="form-label">Experiment name *</label>
                     <input id="experiment-name" class="form-control" type="text" name="experiment_name" pattern="[a-zA-Z0-9_-]+" required>
                     <span class="form-text">Only letters, numbers and symbols (_ and -)</span>
@@ -50,12 +50,6 @@
                 <div class="mb-3 col-md-6">
                     <label for="analyze-intv" class="form-label">Analyze interval (Seconds)</label>
                     <input id="analyze-intv" class="form-control" type="number" name="analyze_intv" min="0" step=".1">
-                </div>
-
-                <div class="mb-3 col-md-6">
-                    <label for="hs-len" class="form-label">Hop sequence length</label>
-                    <input id="hs-len" class="form-control" type="number" name="hs_len" min="0">
-                    <span class="form-text">Note: if the hop sequence field is filled in, this field will be disregarded</span>
                 </div>
 
                 <div class="mb-3 col-md-6">

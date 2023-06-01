@@ -395,9 +395,38 @@ async function get_experiment_raw(req, res) {
     }
 }
 
+async function get_experiment_dashboard(req, res) {
+
+    try {
+
+        const experimentName = req.query.experiment;
+
+        const moteType = req.query.mote_type;
+
+        const moteAddr = req.query.mote_addr;
+
+        const context = {
+            "experiment": experimentName,
+            "mote": moteAddr,
+            "mote_type": moteType
+        }
+
+        res.render(`pages/dashboards/${moteType}`, context);
+
+    } catch {
+        res.render(
+            "pages/message",
+            { 
+                "msg": "Failed to get dashboard."
+            }
+        );
+    }
+}
+
 
 export default {
     get_experiments,
     get_experiment_summary,
-    get_experiment_raw
+    get_experiment_raw,
+    get_experiment_dashboard
 };

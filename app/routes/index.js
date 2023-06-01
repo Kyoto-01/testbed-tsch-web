@@ -24,6 +24,8 @@ router.get("/experiment", analyzeController.get_experiment_summary);
 
 router.get("/experiment/raw", analyzeController.get_experiment_raw);
 
+router.get("/experiment/dashboard", analyzeController.get_experiment_dashboard);
+
 // form submissions
 
 router.post("/control", cbController.create_control_msg);
