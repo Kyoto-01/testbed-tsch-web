@@ -405,13 +405,20 @@ async function get_experiment_dashboard(req, res) {
 
         const moteAddr = req.query.mote_addr;
 
+        const chartCount = {
+            "general": 4,
+            "server": 5,
+            "client": 5
+        };
+
         const context = {
             "experiment": experimentName,
             "mote": moteAddr,
-            "mote_type": moteType
-        }
+            "mote_type": moteType,
+            "chart_count": chartCount[moteType]
+        };
 
-        res.render(`pages/dashboards/${moteType}`, context);
+        res.render(`pages/dashboard`, context);
 
     } catch {
         res.render(
