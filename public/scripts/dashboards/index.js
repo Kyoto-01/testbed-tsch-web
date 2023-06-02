@@ -1,5 +1,5 @@
 
-import report from "/scripts/api/report.js"
+//import report from "/scripts/api/reports.js"
 
 import dashboard_general from "/scripts/dashboards/general.js";
 import dashboard_server from "/scripts/dashboards/server.js";

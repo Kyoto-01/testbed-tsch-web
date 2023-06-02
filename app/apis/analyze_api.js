@@ -89,6 +89,28 @@ async function get_experiments() {
     return response;
 }
 
+async function get_experiment_client_general(experiment, mote) {
+    
+    const topics = [
+        "general/"
+    ];
+
+    const response = await get_experiment_client_data(experiment, mote, topics);
+
+    return response;
+}
+
+async function get_experiment_server_general(experiment, mote) {
+    
+    const topics = [
+        "general/"
+    ];
+
+    const response = await get_experiment_server_data(experiment, mote, topics);
+
+    return response;
+}
+
 async function get_experiment_client_raw_packets(experiment, mote) {
     
     const topics = [
@@ -269,8 +291,11 @@ async function get_experiment_general_raw_per(experiment, mote) {
 
 
 export default {
+    
     get_experiments,
     get_experiment_summary,
+    get_experiment_client_general,
+    get_experiment_server_general,
     get_experiment_client_raw_packets,
     get_experiment_server_raw_packets,
     get_experiment_client_raw_delays,

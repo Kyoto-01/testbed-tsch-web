@@ -16,13 +16,30 @@
         
     </header>
 
-    <main id="main">
+    <main id="main" class="container mt-5">
 
-        <% for (let i = 1; i <= chart_count; ++i) { %>
+        <% mote_peers.forEach((peer, index) => { %>
 
-            <canvas id="chart-<%= i %>"></canvas>
+            <div class="mt-5">
 
-        <% } %>
+                <% if (mote_type != "general") { %>
+
+                    <div>
+                            
+                        <h3>Link <%= index %>: <%= mote_addr %> - <%= peer %></h3>
+                        <hr>
+
+                    </div>
+
+                <% } %>
+
+                <div id="<%= peer %>" class="link-dashboard">
+
+                </div>
+
+            </div>
+
+        <% }); %>
 
     </main>
 
@@ -37,9 +54,9 @@
         import dashboard from "/scripts/dashboards/index.js";
 
         dashboard.plot_dashboard(
-            "<%= experiment %>", 
+            "<%= experiment_name %>", 
             "<%= mote_type %>", 
-            "<%= mote %>"
+            "<%= mote_addr %>"
         );
         
     </script>

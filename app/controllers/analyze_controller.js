@@ -395,6 +395,35 @@ async function get_experiment_raw(req, res) {
     }
 }
 
+async function get_mote_peers(experimentName, moteType, moteAddr) {
+
+    let motePeers = null;
+        
+    switch (moteType) {
+        case "server":
+            motePeers = await analyzeApi.get_experiment_server_general(
+                experimentName, 
+                moteAddr
+            );
+            break;
+        case "client":
+            motePeers = await analyzeApi.get_experiment_client_general(
+                experimentName, 
+                moteAddr
+            );
+            break;
+        case "general":
+            motePeers = ["general"];
+            break;
+    }
+
+    if (moteType != "general") {
+        motePeers = motePeers.body.general.peer;
+    } 
+    
+    return motePeers;
+}
+
 async function get_experiment_dashboard(req, res) {
 
     try {
@@ -405,17 +434,17 @@ async function get_experiment_dashboard(req, res) {
 
         const moteAddr = req.query.mote_addr;
 
-        const chartCount = {
-            "general": 4,
-            "server": 5,
-            "client": 5
-        };
+        const motePeers = await get_mote_peers(
+            experimentName, 
+            moteType, 
+            moteAddr
+        ); 
 
         const context = {
-            "experiment": experimentName,
-            "mote": moteAddr,
+            "experiment_name": experimentName,
             "mote_type": moteType,
-            "chart_count": chartCount[moteType]
+            "mote_addr": moteAddr,
+            "mote_peers": motePeers
         };
 
         res.render(`pages/dashboard`, context);

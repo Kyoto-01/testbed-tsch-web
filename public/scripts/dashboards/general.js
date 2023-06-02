@@ -14,11 +14,22 @@ function plot_mean_delay_time_series(data) {}
 
 function plot_dashboard(data) {
 
+    const dashboardSections = document.getElementsByClassName("link-dashboard");
+
+    for (let section of dashboardSections) {
+
+        section.innerHTML = `
+        <canvas id="throughput_time_series"></canvas>
+        <canvas id="mean_pdr_time_series"></canvas>
+        <canvas id="mean_per_time_series"></canvas>
+        <canvas id="mean_delay_time_series"></canvas>
+        `;
+    }
+
     plot_throughput_time_series(data);
     plot_mean_pdr_time_series(data);
     plot_mean_per_time_series(data);
     plot_mean_delay_time_series(data);
-
 }
 
 

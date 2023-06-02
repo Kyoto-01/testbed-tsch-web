@@ -17,6 +17,19 @@ function plot_rssi_time_series(data) {}
 
 function plot_dashboard(data) {
 
+    const dashboardSections = document.getElementsByClassName("link-dashboard");
+
+    for (let section of dashboardSections) {
+
+        section.innerHTML = `
+        <canvas id="plot_throughput_time_series"></canvas>
+        <canvas id="plot_pdr_time_series"></canvas>
+        <canvas id="plot_per_time_series"></canvas>
+        <canvas id="plot_delay_time_series"></canvas>
+        <canvas id="plot_rssi_time_series"></canvas>
+        `;
+    }
+
     plot_throughput_time_series(data);
     plot_pdr_time_series(data);
     plot_per_time_series(data);
