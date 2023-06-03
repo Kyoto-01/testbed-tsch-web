@@ -21,14 +21,14 @@ async function plot_dashboard(experimentName, moteType, moteAddr) {
             "mean/pdr",
             "mean/per",
             "mean/delay",
-            "mean/rssi"
+            "mean/rssi",
+            "raw/rssi"
         ],
         "client": [
             "raw/throughput",
             "raw/pdr",
             "raw/per",
-            "raw/delay",
-            "raw/rssi"
+            "raw/delay"
         ]
     };
 

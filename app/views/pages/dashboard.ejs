@@ -49,17 +49,20 @@
 
         </div>
 
-        <% if (mote_type == "client") { %>
             <% mote_peers.forEach((peer, index) => { %>
 
                 <div class="container mt-5">
 
-                    <div>
-                            
-                        <h3>Link <%= index %>: <%= mote_addr %> - <%= peer %></h3>
-                        <hr>
+                    <% if (peer != "general") { %>
 
-                    </div>
+                        <div>
+                                
+                            <h3>Link <%= index %>: <%= mote_addr %> - <%= peer %></h3>
+                            <hr>
+
+                        </div>
+
+                    <% } %>
 
                     <div id="<%= peer %>" class="link-dashboard row">
 
@@ -68,18 +71,6 @@
                 </div>
 
             <% }) %>
-
-        <% } else { %>
-
-            <div class="container mt-5">
-
-                <div class="link-dashboard row">
-                
-                </div>
-
-            </div>
-
-        <% } %>
 
     </main>
 

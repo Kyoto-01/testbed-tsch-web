@@ -119,8 +119,7 @@ async function get_experiment_client_raw_packets(experiment, mote) {
         "raw/acked/", 
         "raw/pktlen/", 
         "raw/txpower/", 
-        "raw/channel/", 
-        "raw/rssi/"
+        "raw/channel/"
     ];
 
     const response = await get_experiment_client_data(experiment, mote, topics);

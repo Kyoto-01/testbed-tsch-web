@@ -105,41 +105,57 @@ async function get_experiment_raw_packets_context(moteType, mote, experiment) {
 
     if (response.status == 200) {
 
-        const acked = {};
-
-        for (let peer in response.body.raw.packet) {
-    
-            acked[peer] = [];
-    
-            response.body.raw.packet[peer].forEach((pkt) => {
-    
-                if (
-                    (peer in response.body.raw.acked) && 
-                    (pkt.value in response.body.raw.acked[peer])
-                ) {
-    
-                    acked[peer].push({ "time": pkt.time, "value": "Yes" });
-    
-                } else {
-    
-                    acked[peer].push({ "time": pkt.time, "value": "No" });
-                }    
-            });
-        }
-
         context = {
             "mote_type": moteType,
             "experiment": experiment,
             "general": response.body.general,
             "raw": {
                 "key": { "title": "Packet", "data": response.body.raw.packet },
-                "acked": { "title": "Acked", "data": acked },
-                "pktlen": { "title": "Length (bits)", "data": response.body.raw.pktlen },
-                "txpower": { "title": "Tx Power (dBm)", "data": response.body.raw.txpower },
-                "channel": { "title": "Channel", "data": response.body.raw.channel },
-                "rssi": { "title": "RSSI (dBm)", "data": response.body.raw.rssi }
             }
         };
+
+        if ("acked" in response.body.raw) {
+
+            const acked = {};
+
+            for (let peer in response.body.raw.packet) {
+        
+                acked[peer] = [];
+        
+                response.body.raw.packet[peer].forEach((pkt) => {
+        
+                    if (
+                        (peer in response.body.raw.acked) && 
+                        (pkt.value in response.body.raw.acked[peer])
+                    ) {
+        
+                        acked[peer].push({ "time": pkt.time, "value": "Yes" });
+        
+                    } else {
+        
+                        acked[peer].push({ "time": pkt.time, "value": "No" });
+                    }    
+                });
+            }
+
+            context.raw["acked"] = { "title": "Acked", "data": acked };
+        }
+
+        if ("pktlen" in response.body.raw) {
+            context.raw["pktlen"] = { "title": "Length (bits)", "data": response.body.raw.pktlen };
+        }
+
+        if ("txpower" in response.body.raw) {
+            context.raw["txpower"] = { "title": "Tx Power (dBm)", "data": response.body.raw.txpower };
+        }
+
+        if ("channel" in response.body.raw) {
+            context.raw["channel"] = { "title": "Channel", "data": response.body.raw.channel };
+        }
+
+        if ("rssi" in response.body.raw) {
+            context.raw["rssi"] = { "title": "RSSI (dBm)", "data": response.body.raw.rssi };
+        }
 
     } else {
 
@@ -405,6 +421,7 @@ async function get_mote_peers(experimentName, moteType, moteAddr) {
                 experimentName, 
                 moteAddr
             );
+            motePeers.body.general.peer.unshift("general");
             break;
         case "client":
             motePeers = await analyzeApi.get_experiment_client_general(
