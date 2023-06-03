@@ -1,26 +1,62 @@
 
-//import report from "/scripts/api/reports.js"
+import report from "/scripts/api/reports.js"
 
 import dashboard_general from "/scripts/dashboards/general.js";
 import dashboard_server from "/scripts/dashboards/server.js";
 import dashboard_client from "/scripts/dashboards/client.js";
 
 
-function plot_dashboard(experimentName, moteType, moteAddr) {
+async function plot_dashboard(experimentName, moteType, moteAddr) {
 
-    switch (moteType) {
+    const topics = 
+    {
+        "general": [
+            "raw/throughput",
+            "raw/pdr",
+            "raw/per",
+            "raw/delay"
+        ],
+        "server": [
+            "mean/throughput",
+            "mean/pdr",
+            "mean/per",
+            "mean/delay",
+            "mean/rssi"
+        ],
+        "client": [
+            "raw/throughput",
+            "raw/pdr",
+            "raw/per",
+            "raw/delay",
+            "raw/rssi"
+        ]
+    };
 
-        case "general":
-            dashboard_general.plot_dashboard(experimentName, moteAddr);
-            break;
+    let data = await report.get_experiment_data(
+        moteType, 
+        experimentName, 
+        moteAddr, 
+        topics[moteType]
+    );
 
-        case "server":
-            dashboard_server.plot_dashboard(experimentName, moteAddr);
-            break;
+    if (data.status == 200) {
 
-        case "client":
-            dashboard_client.plot_dashboard(experimentName, moteAddr);
-            break;
+        data = data.body;
+
+        switch (moteType) {
+
+            case "general":
+                dashboard_general.plot_dashboard(data);
+                break;
+
+            case "server":
+                dashboard_server.plot_dashboard(data);
+                break;
+
+            case "client":
+                dashboard_client.plot_dashboard(data);
+                break;
+        }
     }
 }
 

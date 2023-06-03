@@ -18,11 +18,41 @@
 
     <main id="main" class="container mt-5">
 
-        <% mote_peers.forEach((peer, index) => { %>
+        <div>
 
-            <div class="mt-5">
+            <% if (mote_type == "general") { %>
 
+                <h1>Experiment dashboard</h1>
+
+            <% } else { %>
+
+                <h1>Experiment mote dashboard</h1>
+
+            <% } %>
+
+        </div>
+
+        <div class="mt-5 mb-5">
+
+            <ul class="list-unstyled">
+
+                <li><strong>Experiment name</strong>: <%= experiment_name %></li>
+                
                 <% if (mote_type != "general") { %>
+
+                    <li><strong>Mote type</strong>: <%= mote_type %></li>
+                    <li><strong>Mote address</strong>: <%= mote_addr %></li>
+
+                <% } %>
+            
+            </ul>
+
+        </div>
+
+        <% if (mote_type == "client") { %>
+            <% mote_peers.forEach((peer, index) => { %>
+
+                <div class="container mt-5">
 
                     <div>
                             
@@ -31,15 +61,25 @@
 
                     </div>
 
-                <% } %>
+                    <div id="<%= peer %>" class="link-dashboard row">
 
-                <div id="<%= peer %>" class="link-dashboard">
+                    </div>
 
+                </div>
+
+            <% }) %>
+
+        <% } else { %>
+
+            <div class="container mt-5">
+
+                <div class="link-dashboard row">
+                
                 </div>
 
             </div>
 
-        <% }); %>
+        <% } %>
 
     </main>
 

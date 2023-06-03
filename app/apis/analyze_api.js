@@ -292,6 +292,7 @@ async function get_experiment_general_raw_per(experiment, mote) {
 
 export default {
     
+    get_experiment_data,
     get_experiments,
     get_experiment_summary,
     get_experiment_client_general,

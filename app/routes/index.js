@@ -2,6 +2,7 @@ import express from "express";
 
 import cbController from "../controllers/control_bridge_controller.js";
 import analyzeController from "../controllers/analyze_controller.js";
+import analyzeGwController from "../controllers/analyze_gateway_controller.js";
 
 
 const router = express.Router();
@@ -29,6 +30,10 @@ router.get("/experiment/dashboard", analyzeController.get_experiment_dashboard);
 // form submissions
 
 router.post("/control", cbController.create_control_msg);
+
+// gateway
+
+router.post("/api/report/:report_type", analyzeGwController.get_report)
 
 
 export default {
